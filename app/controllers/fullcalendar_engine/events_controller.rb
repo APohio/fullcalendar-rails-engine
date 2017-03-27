@@ -41,6 +41,7 @@ module FullcalendarEngine
                     end: event.endtime.iso8601,
                     allDay: event.all_day,
                     user: event.user_id,
+                    color: set_event_color(event),
                     recurring: (event.event_series_id) ? true : false }
       end
       render json: events.to_json
@@ -121,6 +122,16 @@ module FullcalendarEngine
 
     def make_time_from_minute_and_day_delta(event_time)
       params[:minute_delta].to_i.minutes.from_now((params[:day_delta].to_i).days.from_now(event_time))
+    end
+    
+    def set_event_color(event)
+      if event.user_id == nil
+        '#3B91AD' #default color
+      elsif event.user_id == 1
+        '#24292E'
+      else
+        '#CF1726'
+      end
     end
   end
 end
