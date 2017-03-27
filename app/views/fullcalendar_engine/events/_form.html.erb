@@ -24,6 +24,11 @@
   <%=f.check_box :all_day %>
 </p>
 <p>
+  <%=f.label 'User' %>
+  <br/>
+  <%=f.text_field :user_id %>
+</p>
+<p>
   <%=f.label :period, "Repeats" %>
   <%=f.select :period, FullcalendarEngine::Event::REPEATS.values, {}, onchange: "FullcalendarEngine.Events.showPeriodAndFrequency(this.value);" %>
 </p>
