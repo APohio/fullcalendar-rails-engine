@@ -40,6 +40,7 @@ module FullcalendarEngine
                     start: event.starttime.iso8601,
                     end: event.endtime.iso8601,
                     allDay: event.all_day,
+                    user: event.user_id,
                     recurring: (event.event_series_id) ? true : false }
       end
       render json: events.to_json
@@ -107,7 +108,7 @@ module FullcalendarEngine
     end
 
     def event_params
-      params.require(:event).permit('title', 'description', 'starttime', 'endtime', 'all_day', 'period', 'frequency', 'commit_button')
+      params.require(:event).permit('title', 'description', 'starttime', 'endtime', 'all_day', 'period', 'frequency', 'user_id', 'commit_button')
     end
 
     def determine_event_type
